@@ -107,12 +107,140 @@ export type UpdateBookPayload = {
   clientMutationId?: Maybe<Scalars['String']>;
 };
 
+export type CreateBookMutationVariables = Exact<{
+  params: BookAttributes;
+}>;
+
+
+export type CreateBookMutation = { __typename?: 'Mutation', createBook?: { __typename?: 'CreateBookPayload', book: { __typename?: 'Book', id: string, title?: string | null } } | null };
+
+export type DeleteBookMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type DeleteBookMutation = { __typename?: 'Mutation', deleteBook?: { __typename?: 'DeleteBookPayload', id: string } | null };
+
+export type UpdateBookMutationVariables = Exact<{
+  id: Scalars['ID'];
+  params: BookAttributes;
+}>;
+
+
+export type UpdateBookMutation = { __typename?: 'Mutation', updateBook?: { __typename?: 'UpdateBookPayload', book: { __typename?: 'Book', id: string, title?: string | null } } | null };
+
 export type BooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type BooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, title?: string | null }> };
 
 
+export const CreateBookDocument = gql`
+    mutation createBook($params: BookAttributes!) {
+  createBook(input: {params: $params}) {
+    book {
+      id
+      title
+    }
+  }
+}
+    `;
+export type CreateBookMutationFn = Apollo.MutationFunction<CreateBookMutation, CreateBookMutationVariables>;
+
+/**
+ * __useCreateBookMutation__
+ *
+ * To run a mutation, you first call `useCreateBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createBookMutation, { data, loading, error }] = useCreateBookMutation({
+ *   variables: {
+ *      params: // value for 'params'
+ *   },
+ * });
+ */
+export function useCreateBookMutation(baseOptions?: Apollo.MutationHookOptions<CreateBookMutation, CreateBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateBookMutation, CreateBookMutationVariables>(CreateBookDocument, options);
+      }
+export type CreateBookMutationHookResult = ReturnType<typeof useCreateBookMutation>;
+export type CreateBookMutationResult = Apollo.MutationResult<CreateBookMutation>;
+export type CreateBookMutationOptions = Apollo.BaseMutationOptions<CreateBookMutation, CreateBookMutationVariables>;
+export const DeleteBookDocument = gql`
+    mutation deleteBook($id: ID!) {
+  deleteBook(input: {id: $id}) {
+    id
+  }
+}
+    `;
+export type DeleteBookMutationFn = Apollo.MutationFunction<DeleteBookMutation, DeleteBookMutationVariables>;
+
+/**
+ * __useDeleteBookMutation__
+ *
+ * To run a mutation, you first call `useDeleteBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteBookMutation, { data, loading, error }] = useDeleteBookMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteBookMutation(baseOptions?: Apollo.MutationHookOptions<DeleteBookMutation, DeleteBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteBookMutation, DeleteBookMutationVariables>(DeleteBookDocument, options);
+      }
+export type DeleteBookMutationHookResult = ReturnType<typeof useDeleteBookMutation>;
+export type DeleteBookMutationResult = Apollo.MutationResult<DeleteBookMutation>;
+export type DeleteBookMutationOptions = Apollo.BaseMutationOptions<DeleteBookMutation, DeleteBookMutationVariables>;
+export const UpdateBookDocument = gql`
+    mutation updateBook($id: ID!, $params: BookAttributes!) {
+  updateBook(input: {id: $id, params: $params}) {
+    book {
+      id
+      title
+    }
+  }
+}
+    `;
+export type UpdateBookMutationFn = Apollo.MutationFunction<UpdateBookMutation, UpdateBookMutationVariables>;
+
+/**
+ * __useUpdateBookMutation__
+ *
+ * To run a mutation, you first call `useUpdateBookMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateBookMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateBookMutation, { data, loading, error }] = useUpdateBookMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      params: // value for 'params'
+ *   },
+ * });
+ */
+export function useUpdateBookMutation(baseOptions?: Apollo.MutationHookOptions<UpdateBookMutation, UpdateBookMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateBookMutation, UpdateBookMutationVariables>(UpdateBookDocument, options);
+      }
+export type UpdateBookMutationHookResult = ReturnType<typeof useUpdateBookMutation>;
+export type UpdateBookMutationResult = Apollo.MutationResult<UpdateBookMutation>;
+export type UpdateBookMutationOptions = Apollo.BaseMutationOptions<UpdateBookMutation, UpdateBookMutationVariables>;
 export const BooksDocument = gql`
     query books {
   books {
